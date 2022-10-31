@@ -18,7 +18,7 @@
       </div>
 
       <div class="weather-box" v-if="typeof weather.main != 'undefined'">
-        <div class="temp"> {{ weather.main.temp }}  </div>
+        <div class="temp"> {{ Math.round(weather.main.temp) }} °C  </div>
 
 
         <div class="weather">{{ weather.weather[0].main }}</div>
