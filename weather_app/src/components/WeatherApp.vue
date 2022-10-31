@@ -17,10 +17,11 @@
         <div class="location">{{ weather.name }}</div>
       </div>
 
-      <div class="weather-box">
-        <div class="temp">{{ weather.name }}</div>
+      <div class="weather-box" v-if="typeof weather.main != 'undefined'">
+        <div class="temp"> {{ weather.main.temp }}  </div>
 
-        <div class="weather">{{ weather.name }}</div>
+
+        <div class="weather">{{ weather.weather[0].main }}</div>
       </div>
     </div>
   </main>
@@ -35,30 +36,24 @@ export default {
       url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {}
-
     }
-
   },
-
 
   methods: {
     fetchApiWeather(e) {
-      if (e.key === "Enter") {
+      if (e.key == "Enter") {
         fetch(`${this.url_base}weather?q=${this.query}&units=metric&appid=${this.api_key}`)
-        .then(response => {
-          return response.json();
+        .then(res => {
+          return res.json();
         }).then(this.setResults);
       }
     },
-    setResults(results){
+    setResults (results){
       this.weather = results;
+      console.log(results);
     }
-
-  },
-
-
+  }
 }
-
 </script>
 
 <style scoped>
