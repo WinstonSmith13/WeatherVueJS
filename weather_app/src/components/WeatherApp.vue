@@ -14,7 +14,7 @@
 
     <div class="weather-wrap">
       <div class="location-box">
-        <div class="location">{{ weather.name }}</div>
+        <div class="location">{{ weather }}</div>
         <div class="date">Monday 31 octobre 2022</div>
       </div>
 
@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       api_key: '3612570726d94981b3ebe6af117e0346',
-      url_base: 'api.openweathermap.org/data/2.5/',
+      url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {}
     }
@@ -40,7 +40,7 @@ export default {
   methods: {
     fetchApiWeather(e) {
       if (e.key === "Enter") {
-        fetch(`${this.url_base}forecast?q=${this.query}&appid=${this.api_key}`)
+        fetch(`${this.url_base}forecast?q=${this.query}&units=metric&appid=${this.api_key}`)
         .then(response => {
           return response.json();
         }).then(this.setResults);
